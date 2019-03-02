@@ -229,7 +229,7 @@ func main() {
 	}
 
 	// end game
-	fmt.Println("Vagas！！！:")
+	fmt.Println("Vegas！！！:")
 	for i:=0;i<len(players);i++{
 		SmartPrint(players[i])
 		fmt.Println("")
