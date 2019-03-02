@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
+	"reflect"
 	"sort"
 	"time"
 )
@@ -27,13 +29,13 @@ type gamer struct{
 var Pattern map[string]int = map[string]int{
 	"none":						-1,
 	"normal":					1,
-	"8 o'clock":				2,
-	"9 o'clock":				3,
-	"Triple Noble":				4,
+	"8 o'clock":					2,
+	"9 o'clock":					3,
+	"Triple Noble":					4,
 	"Puma":						6,
-	"Triple Noble 8 o'clock":	7,
-	"Triple Noble 9 o'clock":	8,
-	"Triple Face!":				9,
+	"Triple Noble 8 o'clock":			7,
+	"Triple Noble 9 o'clock":			8,
+	"Triple Face!":					9,
 	"beggar":					0,
 }
 
@@ -104,7 +106,21 @@ func fineCpr(Cards1 []int, Cards2 []int)int{
 	return 0	// This should never happen
 }
 
-func SmartPrint(interface)
+func SmartPrint(i interface{}){
+	var kv = make(map[string]interface{})
+	vValue := reflect.ValueOf(i)
+	vType :=reflect.TypeOf(i)
+	for i:=0;i<vValue.NumField();i++{
+		kv[vType.Field(i).Name] = vValue.Field(i)
+	}
+	//fmt.Println(":")
+	for k,v :=range kv{
+		fmt.Print(k)
+		fmt.Print(":")
+		fmt.Print(v)
+		fmt.Println()
+	}
+}
 
 
 
@@ -213,13 +229,11 @@ func main() {
 	}
 
 	// end game
-	/*
+	fmt.Println("Vagas！！！:")
 	for i:=0;i<len(players);i++{
-		fmt.Println(players[i])
+		SmartPrint(players[i])
+		fmt.Println("")
 	}
-	*/
-
-	// Print Turnover
 
 
 
